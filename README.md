@@ -3,13 +3,38 @@ A Docker image for GoCentral, allowing you to deploy your own custom server.
 
 ## Issues
 This image has only been tested on RPCS3, due to me not owning any real hardware. Rock Band 3 is the only game I've gotten to work so far.<br>
-Rock Band 2 and The Beatles: Rock Band connect to the server, but do not give out their username resulting in their login being refused and the connection being closed.
+Rock Band 2 and The Beatles: Rock Band and Green Day: Rock Band connect to the server, but do not give out their username resulting in their login being refused and the connection being closed.<br>
+Bridge networking doesn't work, you'll need to use the host driver.
 
 ## URLs to mask:
 Rock Band 2 - rb2ps3live.hmxservices.com=`***`<br>
 Rock Band 3 - rb3ps3live.hmxservices.com=`***`<br>
 The Beatles: Rock Band - p9ps3live.hmxservices.com=`***`<br>
+Green Day Rock Band - rpgps3live.hmxservices.com=`***`
 
+## Building
+Docker build tools should be automatically installed when installing Docker.<br>
+
+Run `docker build -t gocentral ./` to build image.
+
+## Running
+### Game Variables
+Each game has been assigned a variable consisting of its' abbreviation and its' console's abbreviation. Here are all possible Game/Console combonations:<br>
+GAMES:<br>
+RB2 - Rock Band 2<br>
+RB3 - Rock Band 3<br>
+BRB - The Beatles : Rock Band<br>
+GDRB - Green Day : Rock Band<br>
+<br>CONSOLES:<br>
+PS3 - Playstation 3<br>
+WII - Wii<br>
+X360 - Xbox 360<br>
+
+You'll need to piece these together and set that as your GAME environment variable.<br>
+ex. RB3:PS3
+
+### docker run
+`docker run -d --network=host -e MONGOCONNECTIONSTIRNG="*" -e LISTENINGIP="***" -e ADDRESS="***" -e GAME="***:***" gocentral`
 # GoCentral
 A Rock Band 3 master server re-implementation written in Golang using MongoDB as the database layer and my Quazal Rendez-vous-compatible forks of [nex-go](https://github.com/ihatecompvir/nex-go)/[nex-protocols-go](https://github.com/ihatecompvir/nex-protocols-go) as the underlying server layer. 
 
