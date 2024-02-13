@@ -1,7 +1,6 @@
 name: Docker Image CI
 
 on:
-  workflow_dispatch
   push:
     branches: [ "main" ]
   pull_request:
@@ -15,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Setup Go
+      run: apt install go
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag gocentral-server:$(date +%s)
