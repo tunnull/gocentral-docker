@@ -18,6 +18,10 @@ Docker build tools should be automatically installed when installing Docker.<br>
 Run `docker build -t gocentral ./` to build image.
 
 ## Running
+### MongoDB
+GoCentral stores its data using the GoLang MongoDB driver. You'll need to register/sign in to MongoDB and claim an (at minimum) free database.<br>
+Grab its' generated Go driver connection string and set that as your MONGOCONNECTIONSTRING. If it gives an error, check if you've replaced the <password> part of the connection string with the pre-generated password given by MongoDB.
+
 ### Game Variables
 Each game has been assigned a variable consisting of its' abbreviation and its' console's abbreviation. Here are all possible Game/Console combonations:<br>
 GAMES:<br>
